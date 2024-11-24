@@ -39,7 +39,7 @@
 		</li>
 	</ul>
 </nav>
-<div class="pt-4 text-center text-xl font-semibold">Checkout using Mobile No.</div>
+<div class="pb-4 pt-8 text-center text-lg font-semibold">Checkout using Mobile No.</div>
 <form action="?/checkout" method="POST" use:enhance>
 	<div class="mb-4">
 		<label for="mobile" class="block text-sm font-medium text-gray-700">Mobile No.</label>
@@ -51,19 +51,13 @@
 				w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
 		/>
 	</div>
-	<!-- horizontal divider -->
-	<hr class="my-4 border-gray-300" />
-	<div class="pt-4 text-center text-xl font-semibold">Checkout using Chakra & Name</div>
-	<div class="mb-4">
-		<label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-		<input
-			type="text"
-			id="name"
-			name="name"
-			class="mt-1 block
-			w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-		/>
+	<!-- horizontal divider with text OR -->
+	<div class="flex items-center">
+		<div class="h-0.5 flex-grow bg-gray-300"></div>
+		<div class="px-4 text-sm text-gray-500">OR</div>
+		<div class="h-0.5 flex-grow bg-gray-300"></div>
 	</div>
+	<div class="pb-4 pt-8 text-center text-lg font-semibold">Checkout using Chakra & Name</div>
 	<div class="mb-4">
 		<label for="chakra" class="block text-sm font-medium text-gray-700">Chakra</label>
 		<select
@@ -77,24 +71,50 @@
 			{/each}
 		</select>
 	</div>
-
 	<div class="mb-4">
-		<label for="people" class="block text-sm font-medium text-gray-700">No. of People</label>
-		<input
-			type="number"
-			min="1"
-			id="people"
-			name="people"
+		<label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+		<!-- dropdown with few dummy indian names -->
+		<select
+			id="name"
+			name="name"
 			class="mt-1 block
-				w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-		/>
+			w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+		>
+			<option value="Amit">Amit</option>
+			<option value="Bhavesh">Bhavesh</option>
+			<option value="Chetan">Chetan</option>
+			<option value="Dhaval">Dhaval</option>
+			<option value="Esha">Esha</option>
+			<option value="Firoz">Firoz</option>
+			<option value="Gaurav">Gaurav</option>
+			<option value="Hemant">Hemant</option>
+			<option value="Isha">Isha</option>
+			<option value="Jatin">Jatin</option>
+			<option value="Kiran">Kiran</option>
+			<option value="Lalit">Lalit</option>
+			<option value="Manish">Manish</option>
+			<option value="Neha">Neha</option>
+			<option value="Omkar">Omkar</option>
+			<option value="Pooja">Pooja</option>
+			<option value="Qureshi">Qureshi</option>
+			<option value="Raj">Raj</option>
+			<option value="Sachin">Sachin</option>
+			<option value="Tina">Tina</option>
+			<option value="Umesh">Umesh</option>
+			<option value="Vikas">Vikas</option>
+			<option value="Waseem">Waseem</option>
+			<option value="Xavier">Xavier</option>
+			<option value="Yogesh">Yogesh</option>
+			<option value="Zubin">Zubin</option>
+		</select>
 	</div>
+
 	<div class="mb-4">
 		<button
 			type="submit"
 			class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
 		>
-			Search
+			Checkout
 		</button>
 	</div>
 </form>

@@ -37,7 +37,7 @@
 		</ul>
 	</nav>
 	<form action="?/register" method="POST" use:enhance>
-		<div class="mb-4">
+		<div class="my-4">
 			<label for="name" class="block text-sm font-medium text-gray-700">Name</label>
 			<input
 				type="text"
