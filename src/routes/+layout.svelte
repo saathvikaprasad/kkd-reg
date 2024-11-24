@@ -3,4 +3,7 @@
 	let { children } = $props();
 </script>
 
-{@render children()}
+<!-- Add tabs to switch between two pages 'register' & 'checkout' -->
+<div class="mx-auto max-w-4xl">
+	{@render children()}
+</div>
