@@ -36,15 +36,17 @@
 			<thead>
 				<tr>
 					<ThSort {table} field="name">Name</ThSort>
-					<ThSort {table} field="chakra">Last Name</ThSort>
+					<ThSort {table} field="chakra">Chakra</ThSort>
 					<ThSort {table} field="mobile">Mobile</ThSort>
 					<ThSort {table} field="plate">Plate</ThSort>
+					<ThSort {table} field="people">No. of People</ThSort>
 				</tr>
 				<tr>
 					<ThFilter {table} field="name" />
 					<ThFilter {table} field="chakra" />
 					<ThFilter {table} field="mobile" />
 					<ThFilter {table} field="plate" />
+					<ThFilter {table} field="people" />
 				</tr>
 			</thead>
 			<tbody>
@@ -54,6 +56,7 @@
 						<td>{row.chakra}</td>
 						<td>{row.mobile}</td>
 						<td>{row.plate}</td>
+						<td>{row.people}</td>
 					</tr>
 				{/each}
 			</tbody>
