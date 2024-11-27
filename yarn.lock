@@ -1977,6 +1977,11 @@ lru-cache@^10.2.0:
   resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-10.4.3.tgz"
   integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
 
+lucide-svelte@^0.462.0:
+  version "0.462.0"
+  resolved "https://registry.npmjs.org/lucide-svelte/-/lucide-svelte-0.462.0.tgz"
+  integrity sha512-BTY44UyXEhlakuPMS4w7NayKhDYARzmhEv3E2YchTiNZ/aySS0F2ktPscTlXRgSZ9xwqoozhnhO1oKhm/nnmqg==
+
 magic-string@^0.30.11, magic-string@^0.30.12, magic-string@^0.30.5:
   version "0.30.13"
   resolved "https://registry.npmjs.org/magic-string/-/magic-string-0.30.13.tgz"
@@ -2764,7 +2769,7 @@ svelte-sonner@^0.3.28:
   resolved "https://registry.npmjs.org/svelte-sonner/-/svelte-sonner-0.3.28.tgz"
   integrity sha512-K3AmlySeFifF/cKgsYNv5uXqMVNln0NBAacOYgmkQStLa/UoU0LhfAACU6Gr+YYC8bOCHdVmFNoKuDbMEsppJg==
 
-"svelte@^3.0.0 || ^4.0.0 || ^5.0.0-next.1", "svelte@^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0", "svelte@^3.37.0 || ^4.0.0 || ^5.0.0", "svelte@^4.0.0 || ^5.0.0-next.0", svelte@^5.0.0, "svelte@^5.0.0-next.96 || ^5.0.0":
+"svelte@^3 || ^4 || ^5.0.0-next.42", "svelte@^3.0.0 || ^4.0.0 || ^5.0.0-next.1", "svelte@^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0", "svelte@^3.37.0 || ^4.0.0 || ^5.0.0", "svelte@^4.0.0 || ^5.0.0-next.0", svelte@^5.0.0, "svelte@^5.0.0-next.96 || ^5.0.0":
   version "5.2.7"
   resolved "https://registry.npmjs.org/svelte/-/svelte-5.2.7.tgz"
   integrity sha512-cEhPGuLHiH2+Z8B1FwQgiZJgA39uUmJR4516TKrM5zrp0/cuwJkfhUfcTxhAkznanAF5fXUKzvYR4o+Ksx3ZCQ==

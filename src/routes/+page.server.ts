@@ -18,7 +18,7 @@ export const actions: Actions = {
 			data.name === '' ||
 			data.chakra === '' ||
 			data.mobile === '' ||
-			data.people === '' ||
+			data.adults === '' ||
 			data.plate === ''
 		) {
 			return fail(400, { messages: ['Please fill all the fields'] });
@@ -27,7 +27,8 @@ export const actions: Actions = {
 		data.name = (data.name as string).trim();
 		data.chakra = (data.chakra as string).trim();
 		data.mobile = (data.mobile as string).trim();
-		const peopleCount = parseInt((data.people as string).trim());
+		const adults = parseInt((data.adults as string).trim());
+		const kids = parseInt((data.kids as string).trim());
 		data.plate = (data.plate as string).trim();
 
 		const errors = [];
@@ -39,10 +40,10 @@ export const actions: Actions = {
 		}
 
 		//check if the number of people is a number
-		if (isNaN(peopleCount)) {
+		if (isNaN(adults)) {
 			errors.push('Invalid number of people');
-		} else if (peopleCount < 1) {
-			errors.push('Number of people should be at least 1');
+		} else if (adults < 1) {
+			errors.push('Number of adults should be at least 1');
 		}
 
 		//check if the plate number is a number, minimum 3 digits
@@ -60,8 +61,9 @@ export const actions: Actions = {
 			name: data.name,
 			chakra: data.chakra,
 			mobile: data.mobile,
-			people: peopleCount,
-			plate: data.plate
+			plate: data.plate,
+			adults: adults,
+			kids: kids
 		};
 
 		// insert the data to the database
