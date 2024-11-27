@@ -19,6 +19,7 @@
 		"@sveltejs/adapter-vercel": "^5.4.8",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"@vincjo/datatables": "^2.1.0",
 		"autoprefixer": "^10.4.20",
 		"drizzle-kit": "^0.22.0",
 		"eslint": "^9.7.0",
@@ -36,11 +37,14 @@
 		"vite": "^5.0.3"
 	},
 	"dependencies": {
+		"@mui/x-data-grid": "^7.22.3",
+		"@supabase/supabase-js": "^2.46.1",
 		"@tailwindcss/container-queries": "^0.1.1",
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
 		"drizzle-orm": "^0.33.0",
 		"postgres": "^3.4.4",
+		"svelte-sonner": "^0.3.28",
 		"zod": "^3.23.8"
 	}
 }
