@@ -25,6 +25,13 @@
 
 	let { data, form } = $props();
 	const table = $derived(new TableHandler(data.rows, { rowsPerPage: 10 }));
+	const sum_people = $derived(table.createCalculation('people').sum());
+	const sum_adults = $derived(table.createCalculation('adults').sum());
+	const sum_kids = $derived(table.createCalculation('kids').sum());
+	// get sum of people for each distinct chakra
+	const distinct = $derived.by(() => {
+		return table.createCalculation('chakra').distinct({ sort: ['count', 'desc'] });
+	});
 	const chakras =
 		'Jagannath Puri, Ram keli, Simantha, Kola, Sri Kashi Dham, Ekachakra, Godruma, Sri Adi Kesava Dham, Ritu, Mamgachi, Modadruma, Pundarik Dham, Ayodhya, Guruvayoor Dham, Keturi Dham, Srivas Angan, Rudra, Antar dwip, Radhakund, Nawadwip, Badrika Ashram, Sri Ranga Dham Chakra, Nilachal, Prayag, Ahobilam, Madhya, Govardhan Giri, Gupta Gokul dham, Janu Dwip, Ananta Padmanaba, Sri Punarthirtha Dham';
 	const chakraList = chakras.split(', ');
@@ -251,3 +258,28 @@
 {:catch error}
 	<p>{error.message}</p>
 {/await}
+
+<div class="mt-4 flex justify-center space-x-4">
+	<div class="rounded-lg border p-4 shadow-lg">
+		<p class="text-lg font-semibold">Total People</p>
+		<p class="text-2xl">{sum_people}</p>
+	</div>
+	<div class="rounded-lg border p-4 shadow-lg">
+		<p class="text-lg font-semibold">Total Adults</p>
+		<p class="text-2xl">{sum_adults}</p>
+	</div>
+	<div class="rounded-lg border p-4 shadow-lg">
+		<p class="text-lg font-semibold">Total Kids</p>
+		<p class="text-2xl">{sum_kids}</p>
+	</div>
+</div>
+
+<!-- card to display Registrations per chakra -->
+<div class="mt-4 rounded-lg border p-4 shadow-lg">
+	<p class="text-lg font-semibold">Registrations per Chakra</p>
+	<ul class="list-inside list-disc text-sm">
+		{#each distinct as { value, count } (value)}
+			<li class="">{value}: {count}</li>
+		{/each}
+	</ul>
+</div>
