@@ -179,7 +179,7 @@
 	</div>
 {/if}
 
-<nav class="flex justify-center space-x-4">
+<!-- <nav class="flex justify-center space-x-4">
 	<ul class="flex w-full">
 		<li class="flex-1">
 			<a
@@ -198,7 +198,7 @@
 			</a>
 		</li>
 	</ul>
-</nav>
+</nav> -->
 
 <!-- wait for data to be poulated and then print table -->
 {#await data}

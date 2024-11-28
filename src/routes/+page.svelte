@@ -15,7 +15,7 @@
 </script>
 
 <div>
-	<nav class="flex justify-center space-x-4">
+	<!-- <nav class="flex justify-center space-x-4">
 		<ul class="flex w-full">
 			<li class="flex-1">
 				<a
@@ -34,7 +34,7 @@
 				</a>
 			</li>
 		</ul>
-	</nav>
+	</nav> -->
 
 	<!-- If form.message exist, display in red alert box -->
 	{#if (form?.messages ?? []).length > 0}
