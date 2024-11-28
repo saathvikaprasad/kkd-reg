@@ -1,13 +1,14 @@
 import type { PageServerLoad } from './$types';
 import { supabase } from '$lib/supabaseClient';
 import { fail } from '@sveltejs/kit';
-import type { Actions } from '../$types';
+import type { Actions } from './$types';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ params }) => {
 	//get the data from suoabase
 	const { data, error } = await supabase
 		.from('reg_28_11')
 		.select('id, name, chakra, mobile, adults, kids, plate')
+		.eq('slot', params.slot)
 		.order('created_at', { ascending: false });
 	if (error) {
 		console.error('error', error);
