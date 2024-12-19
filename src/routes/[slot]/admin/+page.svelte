@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { TableHandler, Datatable, ThSort, ThFilter, type Row } from '@vincjo/datatables';
 	import { Pencil, Trash2 } from 'lucide-svelte';
+	import jsonData from './data.json';
 
 	let selectedRow: Row | null = $state(null);
 	let mode: 'delete' | 'edit' | null = $state(null);
@@ -24,6 +25,45 @@
 	};
 
 	let { data, form } = $props();
+
+	// rows is in data.rows. i need to find sum of people for each chakra
+	// create a table handler
+
+	let chakrasSum: Record<string, { adults: number; kids: number; total: number }> = {};
+	data?.rows?.forEach((row) => {
+		if (row.chakra === 'Ram keli' || row.chakra === 'Keturi Dham') {
+			row.chakra = 'Kheturi/Ramakeli';
+		}
+		if (chakrasSum[row.chakra]) {
+			chakrasSum[row.chakra].adults += row.adults;
+			chakrasSum[row.chakra].kids += row.kids;
+			chakrasSum[row.chakra].total += row.people;
+		} else {
+			chakrasSum[row.chakra] = {
+				adults: row.adults,
+				kids: row.kids,
+				total: row.people
+			};
+		}
+	});
+
+	const reg_data: Record<string, { adults: number; kids: number; total: number }> = {
+		'Govardhan Giri': { adults: 11, kids: 6, total: 17 },
+		Godruma: { adults: 35, kids: 17, total: 52 },
+		'Jagannath Puri': { adults: 37, kids: 16, total: 53 },
+		'Sri Kashi Dham': { adults: 7, kids: 4, total: 11 },
+		'Kheturi/Ramakeli': { adults: 23, kids: 14, total: 37 },
+		Kola: { adults: 75, kids: 38, total: 113 },
+		Madhya: { adults: 10, kids: 5, total: 15 },
+		Nilachal: { adults: 32, kids: 18, total: 50 },
+		Prayag: { adults: 14, kids: 5, total: 19 },
+		'Pundarik Dham': { adults: 11, kids: 7, total: 18 },
+		Ritu: { adults: 37, kids: 14, total: 51 },
+		Rudra: { adults: 44, kids: 25, total: 69 },
+		'Sri Adi Kesava Dham': { adults: 27, kids: 12, total: 39 },
+		'Sri Ranga Dham Chakra': { adults: 38, kids: 16, total: 54 }
+	};
+
 	const table = $derived(new TableHandler(data.rows, { rowsPerPage: 10 }));
 	const sum_people = $derived(table.createCalculation('people').sum());
 	const sum_adults = $derived(table.createCalculation('adults').sum());
@@ -35,7 +75,20 @@
 	const chakras =
 		'Jagannath Puri, Ram keli, Simantha, Kola, Sri Kashi Dham, Ekachakra, Godruma, Sri Adi Kesava Dham, Ritu, Mamgachi, Modadruma, Pundarik Dham, Ayodhya, Guruvayoor Dham, Keturi Dham, Srivas Angan, Rudra, Antar dwip, Radhakund, Nawadwip, Badrika Ashram, Sri Ranga Dham Chakra, Nilachal, Prayag, Ahobilam, Madhya, Govardhan Giri, Gupta Gokul dham, Janu Dwip, Ananta Padmanaba, Sri Punarthirtha Dham';
 	const chakraList = chakras.split(', ');
+
 	chakraList.sort();
+
+	let mod_chakraList = chakraList
+		.map((chakra) => {
+			if (chakra === 'Ram keli') {
+				return 'Kheturi/Ramakeli';
+			}
+			if (chakra === 'Keturi Dham') {
+				return null;
+			}
+			return chakra;
+		})
+		.filter((chakra) => chakra !== null);
 
 	$inspect(data, table);
 </script>
@@ -277,9 +330,29 @@
 <!-- card to display Registrations per chakra -->
 <div class="mt-4 rounded-lg border p-4 shadow-lg">
 	<p class="text-lg font-semibold">Registrations per Chakra</p>
-	<ul class="list-inside list-disc text-sm">
-		{#each distinct as { value, count } (value)}
-			<li class="">{value}: {count}</li>
+	<div class="mb-5 text-sm italic">A - Actual, R - Registered</div>
+	<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+		{#each mod_chakraList as chakra}
+			<div
+				class={`rounded-lg border p-4 shadow-lg ${
+					(chakrasSum[chakra]?.total ?? 0) > (reg_data[chakra]?.total ?? 0)
+						? 'bg-red-400 text-white'
+						: ''
+				}`}
+			>
+				<p class="text-lg font-semibold">{chakra}</p>
+
+				<p class="text-lg">
+					A :
+					{chakrasSum[chakra]?.total ?? 0} ({chakrasSum[chakra]?.adults ?? 0}-A, {chakrasSum[chakra]
+						?.kids ?? 0}-K)
+				</p>
+				<p class="text-lg">
+					R :
+					{reg_data[chakra]?.total ?? 0} ({reg_data[chakra]?.adults ?? 0}-A, {reg_data[chakra]
+						?.kids ?? 0}-K)
+				</p>
+			</div>
 		{/each}
-	</ul>
+	</div>
 </div>

@@ -15,7 +15,13 @@ export const actions: Actions = {
 		const data = Object.fromEntries(formData.entries());
 
 		//check if the form is empty
-		if (data.name === '' || data.chakra === '' || data.mobile === '' || data.plate === '') {
+		if (
+			data.name === '' ||
+			data.chakra === '' ||
+			data.mobile === '' ||
+			data.plate === '' ||
+			data.sevaka === ''
+		) {
 			return fail(400, { messages: ['Please fill all the fields'] });
 		}
 
@@ -25,6 +31,8 @@ export const actions: Actions = {
 		const adults = parseInt((data.adults as string).trim()) || 0;
 		const kids = parseInt((data.kids as string).trim()) || 0;
 		data.plate = (data.plate as string).trim();
+		data.sevaka = (data.sevaka as string).trim();
+		const isSevaka = data.sevaka === 'yes' ? true : false;
 
 		const errors = [];
 
@@ -44,7 +52,7 @@ export const actions: Actions = {
 		}
 
 		//check if the plate number is a number, minimum 3 digits
-		const plateRegex = /^[0-9]{3,}$/;
+		const plateRegex = /^[0-9]{1,}$/;
 		if (!plateRegex.test(data.plate)) {
 			errors.push('Invalid plate number');
 		}
@@ -66,7 +74,7 @@ export const actions: Actions = {
 			plate: data.plate,
 			adults: adults,
 			kids: kids,
-			slot: parseInt(event.params.slot)
+			slot: isSevaka ? 0 : parseInt(event.params.slot)
 		};
 
 		// insert the data to the database
