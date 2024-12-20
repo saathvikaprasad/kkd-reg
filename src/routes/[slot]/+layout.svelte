@@ -7,7 +7,7 @@
 <!-- Add tabs to switch between two pages 'register' & 'checkout' -->
 <!-- header with full width, dark bg, title: Event Registration in center -->
 <header class="bg-gray-800 py-4 text-white shadow-lg">
-	<h1 class="mx-auto max-w-4xl px-4 text-xl font-semibold">KKD - Event Registration</h1>
+	<h1 class="mx-auto max-w-4xl px-4 text-xl font-semibold">KKC - Annual Day Registration Desk</h1>
 </header>
 <Toaster position="top-center" />
 <div class="mx-auto max-w-4xl p-4">

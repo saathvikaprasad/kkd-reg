@@ -64,7 +64,7 @@ export const actions: Actions = {
 			errors.push('Invalid mobile number');
 		}
 
-		let plateRegex = /^[0-9]{3,}$/;
+		let plateRegex = /^[0-9]{1,}$/;
 		if (!plateRegex.test(plate)) {
 			errors.push('Invalid plate number');
 		}

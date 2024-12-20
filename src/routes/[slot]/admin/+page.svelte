@@ -3,6 +3,7 @@
 	import { TableHandler, Datatable, ThSort, ThFilter, type Row } from '@vincjo/datatables';
 	import { Pencil, Trash2 } from 'lucide-svelte';
 	import jsonData from './data.json';
+	import { page } from '$app/stores';
 
 	let selectedRow: Row | null = $state(null);
 	let mode: 'delete' | 'edit' | null = $state(null);
@@ -25,7 +26,7 @@
 	};
 
 	let { data, form } = $props();
-
+	let { params } = $page;
 	// rows is in data.rows. i need to find sum of people for each chakra
 	// create a table handler
 
@@ -47,22 +48,29 @@
 		}
 	});
 
-	const reg_data: Record<string, { adults: number; kids: number; total: number }> = {
-		'Govardhan Giri': { adults: 11, kids: 6, total: 17 },
-		Godruma: { adults: 35, kids: 17, total: 52 },
-		'Jagannath Puri': { adults: 37, kids: 16, total: 53 },
-		'Sri Kashi Dham': { adults: 7, kids: 4, total: 11 },
-		'Kheturi/Ramakeli': { adults: 23, kids: 14, total: 37 },
-		Kola: { adults: 75, kids: 38, total: 113 },
-		Madhya: { adults: 10, kids: 5, total: 15 },
-		Nilachal: { adults: 32, kids: 18, total: 50 },
-		Prayag: { adults: 14, kids: 5, total: 19 },
-		'Pundarik Dham': { adults: 11, kids: 7, total: 18 },
-		Ritu: { adults: 37, kids: 14, total: 51 },
-		Rudra: { adults: 44, kids: 25, total: 69 },
-		'Sri Adi Kesava Dham': { adults: 27, kids: 12, total: 39 },
-		'Sri Ranga Dham Chakra': { adults: 38, kids: 16, total: 54 }
+	const reg_data: Record<string, { adults: number; kids: number; slot: number; total: number }> = {
+		'Govardhan Giri': { adults: 11, kids: 6, slot: 2, total: 17 },
+		Godruma: { adults: 35, kids: 26, slot: 2, total: 61 },
+		'Jagannath Puri': { adults: 37, kids: 19, slot: 2, total: 56 },
+		Madhya: { adults: 10, kids: 8, slot: 2, total: 18 },
+		Nilachal: { adults: 32, kids: 23, slot: 2, total: 55 },
+		'Pundarik Dham': { adults: 11, kids: 9, slot: 2, total: 20 },
+		Rudra: { adults: 44, kids: 28, slot: 2, total: 72 },
+		'Sri Kashi Dham': { adults: 7, kids: 7, slot: 1, total: 14 },
+		'Kheturi/Ramakeli': { adults: 23, kids: 19, slot: 1, total: 42 },
+		Kola: { adults: 75, kids: 56, slot: 1, total: 131 },
+		Prayag: { adults: 14, kids: 9, slot: 1, total: 23 },
+		Ritu: { adults: 37, kids: 20, slot: 1, total: 57 },
+		'Sri Adi Kesava Dham': { adults: 27, kids: 17, slot: 1, total: 44 },
+		'Sri Ranga Dham Chakra': { adults: 38, kids: 26, slot: 1, total: 64 }
 	};
+
+	//remove valies in reg_data where slot is params.slot
+	Object.keys(reg_data).forEach((key) => {
+		if (reg_data[key].slot !== parseInt(params.slot)) {
+			delete reg_data[key];
+		}
+	});
 
 	const table = $derived(new TableHandler(data.rows, { rowsPerPage: 10 }));
 	const sum_people = $derived(table.createCalculation('people').sum());
